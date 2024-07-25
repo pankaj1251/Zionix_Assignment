@@ -7,7 +7,7 @@ This is a web application that allows users to search for electronic parts and c
 
 ## Installation
 
-- Clone the repository: `git clone https://github.com/your-username/part-price-checker.git`
+- Clone the repository: `git clone https://github.com/pankaj1251/Zionix_Assignment.git`
 
 - Navigate to the project directory: cd part-price-checker
 
