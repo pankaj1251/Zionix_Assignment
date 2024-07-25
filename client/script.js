@@ -48,7 +48,7 @@ const displayResults = (results) => {
                 Manufacturer: ${result.manufacturer}<br>
                 Data Provider: ${result.dataProvider}<br>
                 Volume: ${result.volume}<br>
-                Unit Price: ${result.unitPrice.toFixed(2)} INR<br>
+                Unit Price: ${result.unitPrice.toFixed(5)} INR<br>
                 Total Price: ${result.totalPrice.toFixed(2)} INR
             </p>
         `;
@@ -87,7 +87,7 @@ const displayCart = () => {
                     Volume: <input type="number" value="${
                       item.volume
                     }" id="volumeInput_${item.manufacturerPartNumber}"><br>
-                    Unit Price: ${item.unitPrice.toFixed(2)} INR<br>
+                    Unit Price: ${item.unitPrice.toFixed(5)} INR<br>
                     Total Price: <span id="totalPrice_${
                       item.manufacturerPartNumber
                     }">${item.totalPrice.toFixed(2)} INR</span>
