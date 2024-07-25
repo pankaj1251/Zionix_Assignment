@@ -5,12 +5,11 @@ const searchParts = async (req, res) => {
   const { partNumber, volume } = req.body;
   const results = [];
 
-  // Define API endpoints and their configurations
   const apis = [
     {
       name: "MOUSER",
-      url: "https://api.mouser.com/api/v1/search/partnumber?apiKey=82675baf-9a58-4d5a-af3f-e3bbcf486560", // Using provided endpoint
-      method: "post", // Change to POST
+      url: "https://api.mouser.com/api/v1/search/partnumber?apiKey=82675baf-9a58-4d5a-af3f-e3bbcf486560",
+      method: "post",
       data: {
         SearchByPartRequest: {
           mouserPartNumber: partNumber,
@@ -21,13 +20,13 @@ const searchParts = async (req, res) => {
     },
     {
       name: "RUTRONIK",
-      url: `https://www.rutronik24.com/api/search/?apikey=cc6qyfg2yfis&searchterm=${partNumber}`, // Using provided endpoint
+      url: `https://www.rutronik24.com/api/search/?apikey=cc6qyfg2yfis&searchterm=${partNumber}`,
       method: "get",
       currency: "EUR",
     },
     {
       name: "ELEMENT14",
-      url: `http://api.element14.com/catalog/products?term=manuPartNum:${partNumber}&storeInfo.id=in.element14.com&resultsSettings.offset=0&resultsSettings.numberOfResults=1&resultsSettings.refinements.filters=inStock&resultsSettings.responseGroup=medium&callInfo.omitXmlSchema=false&callInfo.callback=&callInfo.responseDataFormat=json&callinfo.apiKey=wb9wt295qf3g6m842896hh2u`, // Using provided endpoint
+      url: `http://api.element14.com/catalog/products?term=manuPartNum:${partNumber}&storeInfo.id=in.element14.com&resultsSettings.offset=0&resultsSettings.numberOfResults=1&resultsSettings.refinements.filters=inStock&resultsSettings.responseGroup=medium&callInfo.omitXmlSchema=false&callInfo.callback=&callInfo.responseDataFormat=json&callinfo.apiKey=wb9wt295qf3g6m842896hh2u`,
       method: "get",
       currency: "USD",
     },
@@ -42,7 +41,6 @@ const searchParts = async (req, res) => {
         response = await axios.get(api.url);
       }
 
-      // Process the response based on the API
       let productData;
 
       if (api.name === "MOUSER") {
@@ -82,7 +80,7 @@ const searchParts = async (req, res) => {
           }
         });
       } else if (api.name === "ELEMENT14") {
-        const products = response.data.products || []; // Ensure we access the correct property
+        const products = response.data.products || [];
         if (Array.isArray(products)) {
           products.forEach((product) => {
             const price = product?.prices?.[0]?.cost;
